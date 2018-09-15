@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayQR"></activity>
+        <activity android:name=".DisplayQR" />
+        <activity android:name=".ScanQR"></activity>
     </application>
 
 </manifest>
