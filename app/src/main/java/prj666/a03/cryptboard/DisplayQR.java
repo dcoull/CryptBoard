@@ -11,3 +11,8 @@ public class DisplayQR extends AppCompatActivity {
         setContentView(R.layout.activity_display_qr);
     }
 }
+
+/*TODO: Find buttons to vars
+TODO: OnClickListeners
+TODO: QR code generation/receiving from intent
+* */
