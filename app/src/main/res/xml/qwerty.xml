@@ -7,6 +7,14 @@
     >
 
     <Row>
+        <Key android:codes="-100" android:keyLabel="CAM" android:keyWidth="15%p" android:keyEdgeFlags="left"/>
+        <Key android:codes="-101" android:keyLabel="PHOTO" android:keyWidth="15%p"/>
+        <Key android:codes="-102" android:keyLabel="DOC" android:keyWidth="15%p"/>
+        <Key android:codes="-103" android:keyLabel="TOG" android:keyWidth="15%p"/>
+        <Key android:codes="-104" android:keyLabel="CONTACT" android:keyWidth="25%p"/>
+        <Key android:codes="-105" android:keyLabel="ADD" android:keyWidth="15%p" android:keyEdgeFlags="right"/>
+    </Row>
+    <Row>
         <Key android:codes="113" android:keyLabel="q" android:keyEdgeFlags="left"/>
         <Key android:codes="119" android:keyLabel="w"/>
         <Key android:codes="101" android:keyLabel="e"/>
@@ -34,7 +42,7 @@
 
     <Row>
         <Key android:codes="-1" android:keyIcon="@drawable/sym_keyboard_shift"
-            android:keyWidth="15%p" android:isModifier="true"
+            android:keyLabel="SHIFT" android:keyWidth="15%p" android:isModifier="true"
             android:isSticky="true" android:keyEdgeFlags="left"/>
         <Key android:codes="122" android:keyLabel="z"/>
         <Key android:codes="120" android:keyLabel="x"/>
@@ -56,12 +64,12 @@
             privately defined in com.example.android.softkeyboard.LatinKeyboardView.
         -->
         <Key android:codes="-101" android:keyIcon="@drawable/sym_keyboard_language_switch"
-            android:keyWidth="10%p"/>
+            android:keyLabel="EMO" android:keyWidth="10%p"/>
         <Key android:codes="32" android:keyIcon="@drawable/sym_keyboard_space"
             android:keyWidth="30%p" android:isRepeatable="true"/>
         <Key android:codes="46,44" android:keyLabel=". ,"
             android:keyWidth="15%p"/>
         <Key android:codes="10" android:keyIcon="@drawable/sym_keyboard_return"
-            android:keyWidth="20%p" android:keyEdgeFlags="right"/>
+            android:keyLabel="RETURN" android:keyWidth="20%p" android:keyEdgeFlags="right"/>
     </Row>
 </Keyboard>
