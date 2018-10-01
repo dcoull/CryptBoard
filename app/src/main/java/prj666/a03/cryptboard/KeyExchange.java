@@ -19,10 +19,6 @@ import com.google.zxing.WriterException;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-//import android.util.Base64;
-
-//import com.google.zxing.client.android.CaptureActivity;
-
 public class KeyExchange extends AppCompatActivity {
 
     Button doneButton, scanButton;
