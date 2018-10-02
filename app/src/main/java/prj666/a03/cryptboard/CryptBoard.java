@@ -4,6 +4,7 @@ package prj666.a03.cryptboard;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.Keyboard;
+import android.widget.PopupWindow;
 import android.media.AudioManager;
 import android.view.KeyEvent;
 import android.view.View;
@@ -12,18 +13,28 @@ import android.view.inputmethod.InputConnection;
 public class CryptBoard extends InputMethodService
         implements KeyboardView.OnKeyboardActionListener{
 
-    private KeyboardView kv;
+    private KeyboardView keyboardView;
     private Keyboard keyboard;
-
+    private View contactsView;
+    private PopupWindow popup;
     private boolean caps = false;
 
     @Override
     public View onCreateInputView() {
-        kv = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboard, null);
+        keyboardView = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboard, null);
         keyboard = new Keyboard(this, R.xml.qwerty);
-        kv.setKeyboard(keyboard);
-        kv.setOnKeyboardActionListener(this);
-        return kv;
+
+        contactsView = getLayoutInflater().inflate(R.layout.activity_main, null);
+        popup = new PopupWindow();
+        popup.setContentView(contactsView);
+        popup.setWidth(400);
+        popup.setHeight(400);
+        popup.setClippingEnabled(false);
+
+        keyboardView.setKeyboard(keyboard);
+        keyboardView.setOnKeyboardActionListener(this);
+
+        return keyboardView;
     }
 
     private void playClick(int keyCode) {
@@ -52,10 +63,13 @@ public class CryptBoard extends InputMethodService
             case Keyboard.KEYCODE_SHIFT:
                 caps = !caps;
                 keyboard.setShifted(caps);
-                kv.invalidateAllKeys();
+                keyboardView.invalidateAllKeys();
                 break;
             case Keyboard.KEYCODE_DONE:
                 ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+                break;
+            case -104:
+                popup.showAtLocation(keyboardView,0,0, -1);
                 break;
             default:
                 char code = (char) primaryCode;
@@ -96,7 +110,7 @@ public class CryptBoard extends InputMethodService
 
     @Override
     public void swipeDown() {
-
+        popup.dismiss();
     }
 
     @Override
