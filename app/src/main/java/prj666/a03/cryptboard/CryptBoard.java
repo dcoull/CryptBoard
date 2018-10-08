@@ -71,6 +71,9 @@ public class CryptBoard extends InputMethodService
                 keyboardView.invalidateAllKeys();
                 break;
             case Keyboard.KEYCODE_MODE_CHANGE:
+                caps = false;
+                keyboard.setShifted(caps);
+
                 numMode = !numMode;
                 if (numMode)
                     keyboardView.setKeyboard(keyboardNum);
