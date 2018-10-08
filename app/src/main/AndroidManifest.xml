@@ -21,8 +21,16 @@
         <activity
             android:name=".Contact_List_Main"
             android:label="@string/title_activity_contact__list__main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Contact_Details"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".Contact_Details">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
