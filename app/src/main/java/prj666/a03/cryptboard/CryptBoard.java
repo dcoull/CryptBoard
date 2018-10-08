@@ -15,14 +15,17 @@ public class CryptBoard extends InputMethodService
 
     private KeyboardView keyboardView;
     private Keyboard keyboard;
+    private Keyboard keyboardNum;
     private View contactsView;
     private PopupWindow popup;
     private boolean caps = false;
+    private boolean numMode = false;
 
     @Override
     public View onCreateInputView() {
         keyboardView = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboard, null);
         keyboard = new Keyboard(this, R.xml.qwerty);
+        keyboardNum = new Keyboard(this, R.xml.alt_qwerty);
 
         contactsView = getLayoutInflater().inflate(R.layout.activity_main, null);
         popup = new PopupWindow();
@@ -31,6 +34,7 @@ public class CryptBoard extends InputMethodService
         popup.setHeight(400);
         popup.setClippingEnabled(false);
 
+        keyboardView.setPreviewEnabled(false);
         keyboardView.setKeyboard(keyboard);
         keyboardView.setOnKeyboardActionListener(this);
 
@@ -48,6 +52,7 @@ public class CryptBoard extends InputMethodService
                 break;
             case Keyboard.KEYCODE_DELETE:
                 am.playSoundEffect(AudioManager.FX_KEYPRESS_DELETE);
+                break;
             default:
                 am.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD);
         }
@@ -63,6 +68,14 @@ public class CryptBoard extends InputMethodService
             case Keyboard.KEYCODE_SHIFT:
                 caps = !caps;
                 keyboard.setShifted(caps);
+                keyboardView.invalidateAllKeys();
+                break;
+            case Keyboard.KEYCODE_MODE_CHANGE:
+                numMode = !numMode;
+                if (numMode)
+                    keyboardView.setKeyboard(keyboardNum);
+                else
+                    keyboardView.setKeyboard(keyboard);
                 keyboardView.invalidateAllKeys();
                 break;
             case Keyboard.KEYCODE_DONE:
