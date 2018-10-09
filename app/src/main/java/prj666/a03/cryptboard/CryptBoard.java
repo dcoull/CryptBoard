@@ -2,9 +2,8 @@ package prj666.a03.cryptboard;
 
 
 import android.inputmethodservice.InputMethodService;
-import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.Keyboard;
-import android.widget.PopupWindow;
+import android.inputmethodservice.KeyboardView;
 import android.media.AudioManager;
 import android.view.KeyEvent;
 import android.view.View;
@@ -104,6 +103,7 @@ public class CryptBoard extends InputMethodService
                 break;
             case KEYCODE_CONTACTS:
                 //popup.showAtLocation(keyboardView,0,0, -1);
+                Toast.makeText(this, "Contacts!", Toast.LENGTH_SHORT).show();
                 break;
             case KEYCODE_ADD:
                 break;
