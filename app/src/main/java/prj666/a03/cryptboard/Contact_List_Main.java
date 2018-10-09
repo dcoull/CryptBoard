@@ -1,6 +1,8 @@
 package prj666.a03.cryptboard;
 
+import android.os.Build;
 import android.provider.Contacts;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,8 +17,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
 import java.util.List;
-public class Contact_List_Main extends AppCompatActivity {
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
+import prj666.a03.cryptboard.ContacBase.Contact;
+import prj666.a03.cryptboard.ContacBase.DatabaseHandler;
+import prj666.a03.cryptboard.RSAStrings.RSAStrings;
+import prj666.a03.cryptboard.cryptboard.frontEndHelper;
+
+public class Contact_List_Main extends AppCompatActivity  {
 
 
     /**

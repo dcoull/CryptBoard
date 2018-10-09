@@ -1,13 +1,23 @@
 package prj666.a03.cryptboard;
 
+
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+//import android.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+
+import android.os.Bundle;
+import android.database.Cursor;
+import java.util.ArrayList;
+import java.util.List;
+
+import prj666.a03.cryptboard.ContacBase.Contact;
+import prj666.a03.cryptboard.ContacBase.DatabaseHandler;
+
 
 public class Contact_List_Fav extends ListFragment implements AdapterView.OnItemClickListener {
 
