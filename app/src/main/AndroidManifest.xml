@@ -24,6 +24,26 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <!-- Declares the input method service -->
+        <service android:name=".CryptBoard"
+            android:label="@string/cryptboard"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data android:name="android.view.im"
+                android:resource="@xml/method" />
+        </service>
+
+        <!-- Optional: an activity for controlling the IME settings
+        <activity android:name="CryptBoardSettings"
+            android:label="@string/cryptboard_settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+        -->
     </application>
 
 </manifest>
