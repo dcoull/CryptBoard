@@ -100,6 +100,7 @@ public class CryptBoard extends InputMethodService
             case KEYCODE_DOCUMENT:
                 break;
             case KEYCODE_TOGGLE:
+                Toast.makeText(this, "Toggle!", Toast.LENGTH_SHORT).show();
                 break;
             case KEYCODE_CONTACTS:
                 //popup.showAtLocation(keyboardView,0,0, -1);
