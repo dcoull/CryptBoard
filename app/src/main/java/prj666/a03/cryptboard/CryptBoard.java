@@ -9,6 +9,8 @@ import android.media.AudioManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 public class CryptBoard extends InputMethodService
         implements KeyboardView.OnKeyboardActionListener{

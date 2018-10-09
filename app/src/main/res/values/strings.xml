@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">CryptBoard</string>
-    <string name="cryptboard"> CryptBoard</string>
+    <string name="cryptboard">CryptBoard</string>
     <string name="subtype_en_US">English US</string>
 </resources>
