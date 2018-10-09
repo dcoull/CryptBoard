@@ -96,3 +96,4 @@ public class Contact {
         return name + " "+ dateCreated;
     }
 }
+>>>>>>> origin/master
