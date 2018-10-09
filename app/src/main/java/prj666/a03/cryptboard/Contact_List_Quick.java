@@ -29,7 +29,7 @@ public class Contact_List_Quick extends  ListFragment {
         //FILL
         for(int i = 0; i< Contact_Quick_list.length; i++)
         {
-            hMap=new HashMap<String, String>();
+            hMap = new HashMap<String, String>();
             hMap.put("Name", Contact_Quick_list[i]);
             hMap.put("Image", Integer.toString(Cont_Image[i]));
 

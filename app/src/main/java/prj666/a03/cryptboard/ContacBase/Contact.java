@@ -15,19 +15,7 @@ public class Contact  {
     private String myPrivKey;
     private String contactPubKey;
     private String dateCreated;
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
 
-
-        @Override
-        public Object createFromParcel(Parcel source) {
-            return new Contact(source);
-        }
-
-        @Override
-        public Contact[] newArray(int size) {
-            return new Contact[size];
-        }
-    };
 
     public Contact() {
         this.name = null;
