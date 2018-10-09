@@ -2,13 +2,14 @@ package prj666.a03.cryptboard;
 
 
 import android.inputmethodservice.InputMethodService;
-import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.Keyboard;
-import android.widget.PopupWindow;
+import android.inputmethodservice.KeyboardView;
 import android.media.AudioManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 public class CryptBoard extends InputMethodService
         implements KeyboardView.OnKeyboardActionListener{
@@ -86,6 +87,7 @@ public class CryptBoard extends InputMethodService
                 break;
             case -104:
                 popup.showAtLocation(keyboardView,0,0, -1);
+                Toast.makeText(this, "Contact Key", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 char code = (char) primaryCode;
@@ -133,4 +135,5 @@ public class CryptBoard extends InputMethodService
     public void swipeUp() {
 
     }
+
 }
