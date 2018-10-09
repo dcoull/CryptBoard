@@ -13,6 +13,14 @@ import android.view.inputmethod.InputConnection;
 public class CryptBoard extends InputMethodService
         implements KeyboardView.OnKeyboardActionListener{
 
+    private static final int KEYCODE_CAMERA = -100;
+    private static final int KEYCODE_PHOTO = -101;
+    private static final int KEYCODE_DOCUMENT = -102;
+    private static final int KEYCODE_TOGGLE = -103;
+    private static final int KEYCODE_CONTACTS = -104;
+    private static final int KEYCODE_ADD = -105;
+    private static final int KEYCODE_MATH_MODE = -200;
+
     private KeyboardView keyboardView;
     private Keyboard keyboard;
     private Keyboard keyboardNum;
@@ -84,8 +92,20 @@ public class CryptBoard extends InputMethodService
             case Keyboard.KEYCODE_DONE:
                 ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
                 break;
-            case -104:
-                popup.showAtLocation(keyboardView,0,0, -1);
+            case  KEYCODE_CAMERA:
+                break;
+            case KEYCODE_PHOTO:
+                break;
+            case KEYCODE_DOCUMENT:
+                break;
+            case KEYCODE_TOGGLE:
+                break;
+            case KEYCODE_CONTACTS:
+                //popup.showAtLocation(keyboardView,0,0, -1);
+                break;
+            case KEYCODE_ADD:
+                break;
+            case KEYCODE_MATH_MODE:
                 break;
             default:
                 char code = (char) primaryCode;

@@ -3,11 +3,11 @@
     android:keyWidth="10%p"
     android:horizontalGap="0px"
     android:verticalGap="0px"
-    android:keyHeight="100px"
+    android:keyHeight="8%p"
     >
     <Row>
         <Key android:codes="-100" android:keyLabel="CAM" android:keyWidth="15%p" android:keyEdgeFlags="left"/>
-        <Key android:codes="-101" android:keyLabel="TEST" android:keyWidth="15%p"/>
+        <Key android:codes="-101" android:keyLabel="PHOTO" android:keyWidth="15%p"/>
         <Key android:codes="-102" android:keyLabel="DOC" android:keyWidth="15%p"/>
         <Key android:codes="-103" android:keyLabel="TOG" android:keyWidth="15%p"/>
         <Key android:codes="-104" android:keyLabel="CONTACT" android:keyWidth="25%p"/>
@@ -40,7 +40,7 @@
     </Row>
 
     <Row>
-        <Key android:codes="-1000" android:keyLabel="=\&gt;" android:keyWidth="15%p"
+        <Key android:codes="-200" android:keyLabel="=\&gt;" android:keyWidth="15%p"
             android:isSticky="true" android:keyEdgeFlags="left"/>
         <Key android:codes="42" android:keyLabel="*"/>
         <Key android:codes="34" android:keyLabel="&quot;"/>
