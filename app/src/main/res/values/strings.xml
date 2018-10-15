@@ -42,6 +42,13 @@
         <item>Muchtar Salimov</item>
     </string-array>
 
+    <string name="contactName">ContactName</string>
+    <string name="keyExchange">keyExchange</string>
+    <string name="done_button">Done</string>
+    <string name="scan_button">Scan QR Code</string>
+    <string name="qrScan_instructions">Scan Me!</string>
+    <string name="publicKeyQR">QR generated based on public key</string>
+
     <string name="cryptboard">CryptBoard</string>
     <string name="subtype_en_US">English US</string>
 </resources>
