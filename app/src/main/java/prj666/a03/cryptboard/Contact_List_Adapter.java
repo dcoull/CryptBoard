@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import prj666.a03.cryptboard.ContacBase.Contact;
+
 
 public class Contact_List_Adapter extends ArrayAdapter<String> {
 

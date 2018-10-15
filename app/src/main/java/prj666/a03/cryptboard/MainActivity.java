@@ -2,7 +2,6 @@ package prj666.a03.cryptboard;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Contact_List_Main.class);
+                Intent intent = new Intent(MainActivity.this, Contact_List.class);
                 startActivity(intent);
             }
         });

@@ -113,9 +113,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db6.close();
         return contactList;
     }
+
     public List<String> getContactListNames() {
         List<String> names = new ArrayList<>();
-        String selectQuery = "SELECT * FROM contactLog ORDER BY 1";
+        String selectQuery = "SELECT * FROM contactLog ORDER BY name";
         SQLiteDatabase db6 = this.getReadableDatabase();
         Cursor cursor = db6.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
@@ -128,9 +129,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db6.close();
         return names;
     }
+
     public List<String> getContactListNamesFav() {
         List<String> names = new ArrayList<>();
-        String selectQuery = "SELECT * FROM contactLog WHERE favourite = 1 ORDER BY 1";
+        String selectQuery = "SELECT * FROM contactLog WHERE favourite = 1 ORDER BY name";
         SQLiteDatabase db6 = this.getReadableDatabase();
         Cursor cursor = db6.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {

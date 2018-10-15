@@ -30,19 +30,18 @@ public class Contact_List extends AppCompatActivity {
 
         DatabaseHandler database = new DatabaseHandler(getApplicationContext());
 //        Contact tmp1 = new Contact("Emile", true, "3dfas12", "hdtgr", "asdfgas");
-//        Contact tmp2 = new Contact("Alejandra", false, "asdf", "hedtgr", "asdfxxgas");
-//        Contact tmp3 = new Contact("Dillon", false, "asdf", "hdtddgr", "asdfvgas");
-//        Contact tmp4 = new Contact("Thomas", false, "3dfcvsfsas12", "hdzxtgr", "basdfgas");
-//        Contact tmp5 = new Contact("Ryan", false, "3dfassadf12", "hdctgr", "zasdfgas");
-//        Contact tmp6 = new Contact("muchtar", false, "3dfafggs12", "hdtdgr", "asdrgzfgas");
-//
-//        database.insertContact(tmp1);
-//        database.insertContact(tmp2);
-//        database.insertContact(tmp3);
-//        database.insertContact(tmp4);
-//        database.insertContact(tmp5);
-//        database.insertContact(tmp6);
+        Contact tmp2 = new Contact("Alejandra", false, "asdf", "hedtgr", "asdfxxgas");
+        Contact tmp3 = new Contact("Dillon", false, "asdf", "hdtddgr", "asdfvgas");
+        Contact tmp4 = new Contact("Thomas", false, "3dfcvsfsas12", "hdzxtgr", "basdfgas");
+        Contact tmp5 = new Contact("Ryan", false, "3dfassadf12", "hdctgr", "zasdfgas");
+        Contact tmp6 = new Contact("muchtar", false, "3dfafggs12", "hdtdgr", "asdrgzfgas");
 
+//        database.insertContact(tmp1);
+        database.insertContact(tmp2);
+        database.insertContact(tmp3);
+        database.insertContact(tmp4);
+        database.insertContact(tmp5);
+        database.insertContact(tmp6);
 
 
         List<String> All_c = database.getContactListNames();
@@ -60,23 +59,19 @@ public class Contact_List extends AppCompatActivity {
         all_co = findViewById(R.id.All);
         lasts = findViewById(R.id.Quick);
 
-        contacts = findViewById(R.id.Contact_List);
 
         favs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Contact_List_Adapter a = new Contact_List_Adapter(Contact_List.this, favorites);
-                contacts = findViewById(R.id.Contact_List);
                 contacts.setAdapter(a);
             }
         });
-
 
         all_co.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Contact_List_Adapter a = new Contact_List_Adapter(Contact_List.this, namesAll);
-                contacts = findViewById(R.id.Contact_List);
                 contacts.setAdapter(a);
             }
         });
@@ -86,12 +81,9 @@ public class Contact_List extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Contact_List_Adapter a = new Contact_List_Adapter(Contact_List.this, namesAll);
-                contacts = findViewById(R.id.Contact_List);
                 contacts.setAdapter(a);
             }
         });
-
-
 
     }
 }
