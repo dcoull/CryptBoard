@@ -4,13 +4,14 @@ package prj666.a03.cryptboard.ContacBase;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Contact  {
+public class Contact implements Parcelable  {
     // keyFile contains the name of the file containing public and private key information .it is not the key itself. file extraction code must be implemented.
-    private String name;
+    public String name;
     private boolean favourite;
     private String myPrivKey;
     private String contactPubKey;
@@ -48,11 +49,18 @@ public class Contact  {
         this.contactPubKey = contactPubKey;
         this.dateCreated = date;
     }
-
+//original
     public Contact(Parcel source) {
-        this.name = source.readString();
-    }
 
+        this.name = source.readString();
+
+    }
+//    public Contact(Parcel source) {
+//
+//        super();
+//        readFromParcel(source);
+//
+//    }
     public String getName() {
         return this.name;
     }
@@ -102,5 +110,31 @@ public class Contact  {
     }
 
 
+    public static final Parcelable.Creator<Contact> CREATOR = new Parcelable.Creator<Contact>() {
+        public Contact createFromParcel(Parcel in) {
 
+            return new Contact(in);
+        }
+
+        public Contact[] newArray(int size) {
+
+            return new Contact[size];
+        }
+
+    };
+//
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public void readFromParcel(Parcel in) {
+        name = in.readString();
+
+
+    }
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+    }
 }

@@ -1,8 +1,12 @@
 package prj666.a03.cryptboard.cryptboard;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -24,53 +28,60 @@ import prj666.a03.cryptboard.ContacBase.Contact;
 import prj666.a03.cryptboard.ContacBase.DatabaseHandler;
 import prj666.a03.cryptboard.RSAStrings.RSAStrings;
 
-
-public class frontEndHelper {
+public class frontEndHelper implements Serializable {
 
     public static DatabaseHandler db;
+    Activity MainAct;
+    public static String scanTarget;
+    public static frontEndHelper sInstance;
 
-    public frontEndHelper(DatabaseHandler dbpass) {
+    public frontEndHelper(DatabaseHandler dbpass, Activity tmp) {
         db = dbpass;
+        MainAct = tmp;
+        sInstance = this;
     }
+    public frontEndHelper getInstance(){return sInstance;}
 
     public List<Contact> getContacts(){
         return db.getContactList();
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void createNewContact() throws InvalidKeySpecException, NoSuchAlgorithmException {
-        ////  CREATE THE KEY FOR SHARE
-        KeyPair tmp = null;
-        try {
-            tmp = RSAStrings.getKeys();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        ///SAVE Keys to String
-        String tmpPub = new String(Base64.getEncoder().encode(tmp.getPublic().getEncoded()));
-        String tmpPriv = new String(Base64.getEncoder().encode(tmp.getPrivate().getEncoded()));
-
-        //// Get Field Values --- add the field gets
-        String name =  "Test Bankers";
-        boolean favourite = true;
-
-        //// Load Into a Contact var
-        Contact toSave = new Contact(name,favourite,tmpPriv, null);
+//    public List<Contact> getContactsNames(){
+//        return db.getContactListNames();
+//    }
 
 
-        displayKey(tmpPub);
-        // GET THEIR PublicKey before Saving
-        String contactPubKey = scanKey();
-        // Calls to Function scanKey()
-
-        // pull key into contact
-        toSave.setContactPubKey(contactPubKey);
-        displayKey(tmpPub);
-        // Save Contact
-        db.insertContact(toSave);
-        // Display QR
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    public void createNewContact(Activity act, String text) throws InvalidKeySpecException, NoSuchAlgorithmException {
+//        ////  CREATE THE KEY FOR SHARE
+//        KeyPair tmp = null;
+//        try {
+//            tmp = RSAStrings.getKeys();
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+//
+//        ///SAVE Keys to String
+//
+//        String tmpPub = android.util.Base64.encodeToString(tmp.getPublic().getEncoded(),0);
+//        String tmpPriv = android.util.Base64.encodeToString(tmp.getPrivate().getEncoded(),0);
+//
+//        String name =  text;
+//        boolean favourite = false;
+//
+//        //// Load Into a Contact var
+//        Contact toSave = new Contact(name,favourite,tmpPriv, null); /// FIX FIX FIX TESTING TESTING
+//        scanTarget = toSave.getName();
+//
+//        db.insertContact(toSave);
+//        displayKey(tmpPub,act);
+//        // GET THEIR PublicKey before Saving
+//
+//
+//        System.out.println(db.getContactList());
+//        // Save Contact
+//
+//        // Display QR
+//    }
 
     //MoreCOMINGSOON
 
@@ -80,9 +91,9 @@ public class frontEndHelper {
         if (tmp.getName().length()<2)System.out.println("Not Loaded");
         System.out.println("Loading byte[] array X509EncodedKey for Contact: "+ name);
         KeyFactory rsaKeyFac = KeyFactory.getInstance("RSA");
-        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(tmp.getContactPubKey()));
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(android.util.Base64.decode(tmp.getContactPubKey(),0));
         RSAPublicKey pubKey = (RSAPublicKey)rsaKeyFac.generatePublic(keySpec);
-        String encryptMsg = new String(Base64.getEncoder().encode(RSAStrings.encryptString(pubKey,msg)));
+        String encryptMsg = android.util.Base64.encodeToString(RSAStrings.encryptString(pubKey,msg),0);
         return encryptMsg;
     }
 
@@ -99,23 +110,33 @@ public class frontEndHelper {
         return stringKey;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void displayKey(String key) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        // GenKey and display to UI
-        // CALLS TO QR STUFF
-
-        System.out.println("Testing Display Key");
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    public void displayKey(String key, Activity act) throws NoSuchAlgorithmException, InvalidKeySpecException {
+//        // GenKey and display to UI
+//        // CALLS TO QR STUFF
+//
+//        Intent intent = new Intent(act,KeyExchange.class);
+//        intent.putExtra("Key",key);
+//        act.startActivityForResult(intent,1);
+//        System.out.println("Testing Display Key");
+//    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String decryptMsg(String name, String msg) throws Exception {
         Contact tmp = db.getContact(name);
         if (tmp.getName().length()<2)System.out.println("Not Loaded");
         KeyFactory rsaKeyFac = KeyFactory.getInstance("RSA");
-        PKCS8EncodedKeySpec encodedKeySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(tmp.getMyPrivKey()));
+        PKCS8EncodedKeySpec encodedKeySpec = new PKCS8EncodedKeySpec(android.util.Base64.decode(tmp.getMyPrivKey(),0));
         RSAPrivateKey privKey = (RSAPrivateKey)rsaKeyFac.generatePrivate(encodedKeySpec);;
-        byte [] decrypted = RSAStrings.decryptString(privKey,Base64.getDecoder().decode(msg.getBytes()));
+        byte [] decrypted = RSAStrings.decryptString(privKey,android.util.Base64.decode(msg.getBytes(),0));
         return new String(decrypted);
+    }
+
+    public void saveLastKey(String key){
+        Contact tmp = db.getContact(scanTarget);
+        tmp.setContactPubKey(key);
+        Toast.makeText(MainAct, "Contact: " +tmp.getName()+" Updated to:\n"+ tmp.toString() + " ", Toast.LENGTH_LONG).show();
+        db.updateContact(tmp);
     }
 
 }

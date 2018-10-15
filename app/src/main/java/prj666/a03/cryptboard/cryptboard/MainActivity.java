@@ -28,6 +28,7 @@ import javax.crypto.NoSuchPaddingException;
 
 import prj666.a03.cryptboard.ContacBase.Contact;
 import prj666.a03.cryptboard.ContacBase.DatabaseHandler;
+import prj666.a03.cryptboard.Contact_List;
 import prj666.a03.cryptboard.Contact_List_Main;
 import prj666.a03.cryptboard.R;
 import prj666.a03.cryptboard.RSAStrings.RSAStrings;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Contact_List_Main.class);
+                Intent intent = new Intent(MainActivity.this, Contact_List.class);
                 startActivity(intent);
             }
         });
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         tv.setText(stringFromJNI());
         DatabaseHandler db;
         db = DatabaseHandler.getInstance(this);
-        frontEndHelper control = new frontEndHelper(db);
+        frontEndHelper control = new frontEndHelper(db, this);
         System.out.println(control.getContacts());
         try {
             String testSend = control.sendMsg("Mitch Headburg","Your a cool guy");

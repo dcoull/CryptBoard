@@ -22,7 +22,7 @@
             android:name=".Contact_List_Main"
             android:label="@string/title_activity_contact__list__main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Contact_Details"></activity>
+        <activity android:name=".Contact_List"></activity>
     </application>
 
 </manifest>
